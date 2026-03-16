@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Royal Carriers Inc. — Freight You Can Count On</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E42;
+    --gold: #C8A94A;
+    --gold-light: #E8C96A;
+    --cream: #F9F6F0;
+    --white: #FFFFFF;
+    --text-dark: #0D1B2A;
+    --text-mid: #3D4F62;
+    --text-muted: #7A8FA3;
+    --border: rgba(13,27,42,0.12);
+    --radius: 4px;
+    --radius-lg: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    color: var(--text-dark);
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6vw;
+    height: 64px;
+    border-bottom: 1px solid rgba(200,169,74,0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+    color: var(--navy);
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 6vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-lines {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.06;
+    background-image: repeating-linear-gradient(
+      90deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 80px
+    );
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 76px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 44px;
+    line-height: 1.65;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px; font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  /* SECTIONS */
+  section { padding: 96px 6vw; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700; line-height: 1.18;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    font-size: 17px; font-weight: 300;
+    color: var(--text-mid);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .divider { width: 48px; height: 2px; background: var(--gold); margin: 24px 0; }
+
+  /* ABOUT */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 56px;
+  }
+  .about-text p {
+    color: var(--text-mid); font-size: 16px;
+    margin-bottom: 20px; line-height: 1.8;
+  }
+  .about-values {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .value-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border-top: 3px solid var(--gold);
+  }
+  .value-card h4 {
+    font-size: 15px; font-weight: 600;
+    color: var(--text-dark); margin-bottom: 8px;
+  }
+  .value-card p {
+    font-size: 13px; color: var(--text-muted); line-height: 1.6;
+  }
+
+  /* FLEET */
+  #fleet { background: var(--white); }
+  .fleet-intro { max-width: 600px; margin-bottom: 56px; }
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .fleet-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .fleet-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 32px rgba(13,27,42,0.08);
+  }
+  .fleet-icon {
+    width: 48px; height: 48px;
+    background: var(--navy);
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .fleet-icon svg { width: 26px; height: 26px; }
+  .fleet-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--text-dark); margin-bottom: 8px;
+  }
+  .fleet-card p {
+    font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;
+  }
+  .fleet-spec {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .spec-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-label { color: var(--text-muted); }
+  .spec-val { font-weight: 600; color: var(--text-dark); }
+
+  /* JOBS */
+  #jobs { background: var(--cream); }
+  .jobs-layout {
+    display: grid; grid-template-columns: 1fr 440px; gap: 64px;
+    margin-top: 56px; align-items: start;
+  }
+  .job-listing {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 16px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .job-listing:hover { border-color: var(--gold); }
+  .job-title {
+    font-size: 17px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px;
+  }
+  .job-meta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .job-tag {
+    font-size: 12px; font-weight: 500;
+    background: rgba(13,27,42,0.05);
+    color: var(--text-mid);
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .job-tag.gold-tag {
+    background: rgba(200,169,74,0.12);
+    color: #8B6E20;
+  }
+  .job-arrow {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .job-arrow:hover { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+
+  /* APPLICATION FORM */
+  .apply-form-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    position: sticky; top: 88px;
+  }
+  .apply-form-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--white); margin-bottom: 6px;
+  }
+  .apply-form-card .form-sub {
+    font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 28px; line-height: 1.5;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-bottom: 8px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group select option { background: var(--navy-mid); color: var(--white); }
+  .form-group textarea { resize: none; height: 80px; }
+  .submit-btn {
+    width: 100%; padding: 14px;
+    background: var(--gold); color: var(--navy);
+    border: none; border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer; letter-spacing: 0.02em;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: var(--gold-light); }
+  #form-success {
+    display: none;
+    text-align: center; padding: 24px 0;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px; line-height: 1.6;
+  }
+  #form-success .check {
+    font-size: 36px; margin-bottom: 12px;
+    color: var(--gold);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-label { color: var(--gold); }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 56px;
+  }
+  .contact-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .contact-card-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .contact-card-val {
+    font-size: 16px; color: var(--white); font-weight: 500;
+  }
+  .contact-card-sub {
+    font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #07111C;
+    padding: 32px 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer .f-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 16px; color: var(--white);
+  }
+  footer .f-logo span { color: var(--gold); }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 900px) {
+    .about-grid, .jobs-layout, .fleet-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .apply-form-card { position: static; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .about-values { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Royal<span>Carriers</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#jobs">Careers</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#jobs" class="nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-eyebrow">Licensed & Insured Freight Carrier</div>
+  <h1>Freight You Can <em>Count On.</em></h1>
+  <p class="hero-sub">Royal Carriers Inc. delivers reliable OTR freight services across North America. Three Freightliner Cascadia trucks. Experienced drivers. On-time, every time.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Work With Us</a>
+    <a href="#jobs" class="btn-outline">Drive With Us →</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Years in Operation</div>
+    </div>
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Freightliner Cascadias</div>
+    </div>
+    <div>
+      <div class="stat-num">48</div>
+      <div class="stat-label">States Served</div>
+    </div>
+    <div>
+      <div class="stat-num">7-Fig</div>
+      <div class="stat-label">Annual Revenue</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who We Are</div>
+  <h2 class="section-title">Built on Reliability,<br>Driven by Excellence</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="divider"></div>
+      <p>Royal Carriers Inc. is a family-owned, owner-operated freight company with over five years of consistent performance in the OTR trucking industry. We run a tight, professional fleet and take pride in treating every load like it's our own.</p>
+      <p>We specialize in dry van and refrigerated freight, connecting shippers and brokers to dependable capacity across the continental United States. Our drivers are experienced, safety-conscious professionals who represent our brand on every mile.</p>
+      <p>We've grown from the ground up — no outside capital, no shortcuts. Just excellent service and hard work.</p>
+    </div>
+    <div class="about-values">
+      <div class="value-card">
+        <h4>On-Time Performance</h4>
+        <p>We pick up and deliver on schedule, every time. Our track record speaks for itself.</p>
+      </div>
+      <div class="value-card">
+        <h4>Safety First</h4>
+        <p>Every driver is fully licensed, background checked, and committed to DOT compliance.</p>
+      </div>
+      <div class="value-card">
+        <h4>Broker-Friendly</h4>
+        <p>Quick to respond, easy to work with, and proactive on updates throughout every load.</p>
+      </div>
+      <div class="value-card">
+        <h4>Driver Focused</h4>
+        <p>We treat our drivers right. Competitive pay, maintained equipment, and real support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section id="fleet">
+  <div class="section-label">Our Equipment</div>
+  <h2 class="section-title">Modern Fleet,<br>Ready to Roll</h2>
+  <div class="fleet-intro">
+    <p class="section-sub">We run late-model Freightliner Cascadias with a mix of reefer and dry van trailers — well-maintained, DOT compliant, and ready for your freight.</p>
+  </div>
+  <div class="fleet-grid">
+
+    <!-- Tractors -->
+    <div class="fleet-card">
+      <div class="fleet-icon">
+        <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="14" height="8" rx="1" fill="#C8A94A"/>
+          <rect x="14" y="13" width="9" height="5" rx="1" fill="rgba(200,169,74,0.5)"/>
+          <circle cx="6" cy="19" r="2" fill="white"/>
+          <circle cx="19" cy="19" r="2" fill="white"/>
+        </svg>
+      </div>
+      <h3>Freightliner Cascadia</h3>
+      <p>Class 8 semi-trucks configured for OTR operations. Sleeper berths, ELDs installed, and fully insured.</p>
+      <div class="fleet-spec">
+        <div class="spec-row"><span class="spec-label">Units</span><span class="spec-val">3 Trucks</span></div>
+        <div class="spec-row"><span class="spec-label">Configuration</span><span class="spec-val">OTR Sleeper</span></div>
+        <div class="spec-row"><span class="spec-label">ELD Compliant</span><span class="spec-val">Yes</span></div>
+      </div>
+    </div>
+
+    <!-- Reefer -->
+    <div class="fleet-card">
+      <div class="fleet-icon">
+        <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="22" height="14" rx="1" fill="#C8A94A"/>
+          <rect x="4" y="8" width="18" height="10" rx="0.5" fill="rgba(13,27,42,0.5)"/>
+          <line x1="13" y1="8" x2="13" y2="18" stroke="rgba(200,169,74,0.7)" stroke-width="1"/>
+          <line x1="4" y1="13" x2="22" y2="13" stroke="rgba(200,169,74,0.7)" stroke-width="1"/>
+        </svg>
+      </div>
+      <h3>Refrigerated Trailers</h3>
+      <p>Temperature-controlled reefer units for produce, pharmaceuticals, and any freight requiring precise climate management.</p>
+      <div class="fleet-spec">
+        <div class="spec-row"><span class="spec-label">Length</span><span class="spec-val">53 ft</span></div>
+        <div class="spec-row"><span class="spec-label">Temp Range</span><span class="spec-val">-20°F to +70°F</span></div>
+        <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">44,000 lbs</span></div>
+      </div>
+    </div>
+
+    <!-- Dry Van -->
+    <div class="fleet-card">
+      <div class="fleet-icon">
+        <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="22" height="14" rx="1" fill="#C8A94A"/>
+          <rect x="20" y="8" width="2" height="10" fill="rgba(13,27,42,0.6)"/>
+        </svg>
+      </div>
+      <h3>Dry Van Trailers</h3>
+      <p>Standard enclosed dry van trailers for general freight, palletized goods, and non-perishable commodities across all 48 states.</p>
+      <div class="fleet-spec">
+        <div class="spec-row"><span class="spec-label">Length</span><span class="spec-val">53 ft</span></div>
+        <div class="spec-row"><span class="spec-label">Load Type</span><span class="spec-val">Drop & Hook / Live</span></div>
+        <div class="spec-row"><span class="spec-label">Capacity</span><span class="spec-val">45,000 lbs</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JOBS -->
+<section id="jobs">
+  <div class="section-label">Careers</div>
+  <h2 class="section-title">Drive With Royal Carriers</h2>
+  <div class="jobs-layout">
+    <div>
+      <p style="color: var(--text-mid); font-size: 17px; font-weight: 300; margin-bottom: 36px; max-width: 480px; line-height: 1.7;">
+        We're looking for experienced, professional CDL-A drivers who take pride in their work. Competitive pay, well-maintained equipment, and a team that respects your time.
+      </p>
+
+      <!-- Job 1 -->
+      <div class="job-listing">
+        <div>
+          <div class="job-title">OTR Class A CDL Driver — Dry Van</div>
+          <div class="job-meta">
+            <span class="job-tag">Full-Time</span>
+            <span class="job-tag">OTR</span>
+            <span class="job-tag gold-tag">$0.62–$0.70 CPM</span>
+            <span class="job-tag">53ft Dry Van</span>
+          </div>
+        </div>
+        <div class="job-arrow" onclick="document.querySelector('.apply-form-card').scrollIntoView({behavior:'smooth'})">→</div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="job-listing">
+        <div>
+          <div class="job-title">OTR Class A CDL Driver — Reefer</div>
+          <div class="job-meta">
+            <span class="job-tag">Full-Time</span>
+            <span class="job-tag">OTR</span>
+            <span class="job-tag gold-tag">$0.65–$0.74 CPM</span>
+            <span class="job-tag">Refrigerated</span>
+          </div>
+        </div>
+        <div class="job-arrow" onclick="document.querySelector('.apply-form-card').scrollIntoView({behavior:'smooth'})">→</div>
+      </div>
+
+      <!-- Benefits strip -->
+      <div style="margin-top: 36px; padding: 28px; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border);">
+        <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">What We Offer</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid);">
+            <span style="color: var(--gold); font-weight: 700;">✓</span> Competitive CPM pay
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid);">
+            <span style="color: var(--gold); font-weight: 700;">✓</span> Late-model Cascadias
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid);">
+            <span style="color: var(--gold); font-weight: 700;">✓</span> Home time respected
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid);">
+            <span style="color: var(--gold); font-weight: 700;">✓</span> Direct communication
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid);">
+            <span style="color: var(--gold); font-weight: 700;">✓</span> Fuel card provided
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-mid);">
+            <span style="color: var(--gold); font-weight: 700;">✓</span> 2+ yrs experience req.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLY FORM -->
+    <div class="apply-form-card">
+      <h3>Apply Now</h3>
+      <p class="form-sub">Fill out this form and we'll reach out within 24 hours.</p>
+      <div id="apply-form">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="f-name" placeholder="John Smith" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="f-phone" placeholder="(555) 000-0000" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="f-email" placeholder="john@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Position</label>
+          <select id="f-position">
+            <option value="">Select a position...</option>
+            <option>OTR CDL Driver — Dry Van</option>
+            <option>OTR CDL Driver — Reefer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Years of CDL Experience</label>
+          <select id="f-exp">
+            <option value="">Select...</option>
+            <option>2–3 years</option>
+            <option>3–5 years</option>
+            <option>5–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Anything else?</label>
+          <textarea id="f-note" placeholder="MVR status, endorsements, home time needs..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Submit Application</button>
+      </div>
+      <div id="form-success">
+        <div class="check">✓</div>
+        <strong style="color: white; font-size: 17px;">Application Received</strong>
+        <p style="margin-top: 10px; color: rgba(255,255,255,0.55); font-size: 14px;">We'll be in touch within 24 hours. Thanks for your interest in joining Royal Carriers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Ready to Move Freight?</h2>
+  <p style="color: rgba(255,255,255,0.55); font-size: 17px; font-weight: 300; max-width: 480px; line-height: 1.7; margin-top: 12px;">
+    Whether you're a broker looking for reliable capacity or a driver ready to join the team — we want to hear from you.
+  </p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-card-label">Phone</div>
+      <div class="contact-card-val">(XXX) XXX-XXXX</div>
+      <div class="contact-card-sub">Mon–Fri, 7am–7pm CST</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">Email</div>
+      <div class="contact-card-val">dispatch@royalcarriersinc.com</div>
+      <div class="contact-card-sub">Response within 4 hours</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">MC / DOT</div>
+      <div class="contact-card-val">MC# XXXXXX</div>
+      <div class="contact-card-sub">Fully licensed & insured</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Royal<span>Carriers</span> Inc.</div>
+  <p>© 2026 Royal Carriers Inc. All rights reserved.</p>
+  <p style="font-size: 13px; color: rgba(255,255,255,0.2);">DOT Compliant · Licensed · Insured</p>
+</footer>
+
+<script>
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const position = document.getElementById('f-position').value;
+  if (!name || !phone || !email || !position) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  document.getElementById('apply-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
